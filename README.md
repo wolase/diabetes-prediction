@@ -32,8 +32,8 @@ The **Random Forest model** achieved:
 ## 🛠 Installation & Usage  
 
 ```bash
-git clone https://github.com/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/wolase/diabetes-prediction.git
+cd diabetes-prediction
 pip install -r requirements.txt
 streamlit run app.py # Make sure to update any necessary paths in app.py before running the app
 
