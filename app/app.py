@@ -64,18 +64,18 @@ elif page == "Diabetes prediction":
                 df['Predicted_Diabetic'] = y_pred
 
                 st.write("Predictions with confidence scores:")
-                st.write(df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure', 'BMI', 'Age', 'Diabetes Probability (%)', 'Predicted_Diabetic']])
+                st.write(df[['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure', 'TricepsThickness','SerumInsulin','BMI', 'DiabetesPedigree','Age','Diabetes Probability (%)', 'Predicted_Diabetic']])
 
     elif input_method == "Enter Values Manually":
         st.write("Enter values for each feature below:")
 
         pregnancies = st.number_input("Pregnancies (count)", min_value=0, max_value=20, step=1)
-        plasma_glucose = st.number_input("Plasma Glucose (mg/dL)", min_value=0, max_value=200)
-        blood_pressure = st.number_input("Diastolic Blood Pressure (mmHg)", min_value=0, max_value=125)
-        skin_thickness = st.number_input("Triceps Thickness (mm)", min_value=0, max_value=100)
-        insulin = st.number_input("Serum Insulin (µU/mL)", min_value=0, max_value=850)
+        plasma_glucose = st.number_input("Plasma Glucose (mg/dL)", min_value=0.0, max_value=200.0)
+        blood_pressure = st.number_input("Diastolic Blood Pressure (mmHg)", min_value=0.0, max_value=125.0)
+        skin_thickness = st.number_input("Triceps Thickness (mm)", min_value=0.0, max_value=100.0)
+        insulin = st.number_input("Serum Insulin (µU/mL)", min_value=0.0, max_value=850.0)
         bmi = st.number_input("BMI (kg/m²)", min_value=0.0, max_value=70.0)
-        diabetes_pedigree = st.number_input("Diabetes Pedigree Function (Risk Score)", min_value=0.0, max_value=2.5)
+        diabetes_pedigree = st.number_input("Diabetes Pedigree Function (Risk Score)", min_value=0.0,max_value=2.5)
         age = st.number_input("Age (years)", min_value=18, step=1, max_value=90)
 
         if st.button("Predict"):
@@ -111,20 +111,11 @@ elif page == "Predefined data evaluation":
 
     predefined_data = {
         'Healthy1': [0, 120, 70, 30, 50, 25.5, 0.5, 35],
-        'Healthy2': [1, 130, 75, 25, 60, 26.0, 0.6, 40],
-        'Healthy3': [0, 115, 65, 28, 45, 24.0, 0.4, 32],
+        'Healthy2': [0, 115, 65, 28, 45, 24.0, 0.4, 32],
+        'Moderate risk1': [3, 78, 50, 32, 88, 31, 0.248, 26],
+        'Moderate risk2': [1, 189, 60, 23, 846, 30.1, 0.398, 59],
         'High risk1': [5, 160, 80, 40, 100, 35.6, 1.5, 50],
-        'High risk2': [4, 155, 85, 42, 90, 34.5, 1.4, 48],
-        'High risk3': [6, 170, 90, 45, 110, 36.5, 1.6, 55],
-        'Diabetic1': [3, 180, 90, 45, 150, 45.5, 1.2, 60],
-        'Diabetic2': [5, 200, 95, 50, 160, 40.0, 1.7, 62],
-        'Diabetic3': [2, 190, 92, 48, 140, 42.0, 1.3, 58],
-        'Moderate risk1': [2, 140, 72, 30, 80, 32.5, 1.0, 45],
-        'Moderate risk2': [3, 150, 78, 35, 85, 33.0, 1.1, 46],
-        'Moderate risk3': [4, 145, 82, 38, 95, 34.0, 1.2, 50],
-        'Low risk1': [0, 100, 60, 20, 40, 22.0, 0.3, 30],
-        'Low risk2': [1, 110, 65, 22, 50, 23.0, 0.4, 34],
-        'Low risk3': [0, 105, 62, 23, 45, 21.5, 0.3, 29],
+        'High risk2': [4, 155, 85, 42, 90, 34.5, 1.4, 48]
     }
 
     st.write("### Predefined data overview:")
