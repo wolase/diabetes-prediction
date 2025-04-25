@@ -41,4 +41,4 @@ jobs:
 
       - name: Kill Streamlit app
         run: |
-          kill $(ps aux | grep 'streamlit run' | awk '{print $1}')  # Killing the Streamlit process
+          kill $(cat streamlit_pid.txt)  # Killing the Streamlit process
