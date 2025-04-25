@@ -24,7 +24,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install jupyter
           pip install -r requirements.txt
+          pip install streamlit  # Install Streamlit for the app
 
       - name: Run Jupyter Notebook
         run: |
           jupyter nbconvert --to notebook --execute notebook/diabetes_prediction_pipeline.ipynb --output executed_notebook.ipynb
+
+      - name: Run Streamlit app
+        run: |
+          nohup streamlit run app/app.py &  
+          sleep 10  
+
+      - name: Test Streamlit app
+        run: |
+          curl --silent --show-error --fail http://localhost:8501  
+
+      - name: Kill Streamlit app
+        run: |
+          kill $(ps aux | grep 'streamlit run' | awk '{print $1}')  # Killing the Streamlit process
