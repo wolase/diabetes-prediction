@@ -32,13 +32,19 @@ jobs:
 
       - name: Run Streamlit app
         run: |
-          nohup streamlit run app/app.py &  
-          sleep 10  
+          nohup streamlit run app/app.py &  # Run Streamlit in the background
+          echo $! > streamlit_pid.txt  # Save the Streamlit process ID to a file
+          sleep 10  # Wait for the app to start
 
       - name: Test Streamlit app
         run: |
-          curl --silent --show-error --fail http://localhost:8501  
+          curl --silent --show-error --fail http://localhost:8501  # Test if the app is accessible
 
-      - name: Kill Streamlit app
+      - name: Kill Streamlit app (if running)
         run: |
-          kill $(cat streamlit_pid.txt)  # Killing the Streamlit process
+          if [ -f streamlit_pid.txt ]; then  # Check if the PID file exists
+            kill $(cat streamlit_pid.txt)  # Kill Streamlit using the saved process ID
+            echo "Streamlit app killed successfully."
+          else
+            echo "Streamlit PID file not found. Skipping kill step."
+          fi
